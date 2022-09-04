@@ -1,10 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "../redux/features/counter/counterSlice";
 import {
-  decrement,
-  increment,
-  incrementByAmount,
   selectCount,
-  toggleCounter,
   selectShowCounter,
 } from "../redux/features/counter/counterSlice";
 import classes from "./Counter.module.css";
@@ -19,18 +16,18 @@ export const Counter = () => {
   const showCounter = useSelector(selectShowCounter);
 
   const incrementHandler = () => {
-    dispatch(increment());
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch(incrementByAmount(incrementValue));
+    dispatch(counterActions.incrementByAmount(incrementValue));
   };
   const decrementHandler = () => {
-    dispatch(decrement());
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch(toggleCounter());
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
