@@ -4,8 +4,10 @@ import {
   selectCount,
   selectShowCounter,
 } from "../redux/features/counter/counterSlice";
+import { selectAuthenticated } from "../redux/features/authenticate/authenticateSlice";
 import classes from "./Counter.module.css";
 import { useState } from "react";
+import React from "react";
 export const Counter = () => {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ export const Counter = () => {
   const incrementValue = Number(incrementAmount) || 5;
 
   const showCounter = useSelector(selectShowCounter);
+
+  const isAuthenticated = useSelector(selectAuthenticated);
 
   const incrementHandler = () => {
     dispatch(counterActions.increment());
@@ -31,17 +35,21 @@ export const Counter = () => {
   };
 
   return (
-    <main className={classes.counter}>
-      <h1>Redux Counter</h1>
-      {showCounter && <div className={classes.value}>{count}</div>}
-      <div>
-        {/* <input value={incrementAmount}></input> */}
-        <button onClick={incrementHandler}>Increment</button>
-        <button onClick={increaseHandler}>Increase by 5</button>
-        <button onClick={decrementHandler}>Decrement</button>
-      </div>
-      <button onClick={toggleCounterHandler}>Toggle Counter</button>
-    </main>
+    <React.Fragment>
+      {isAuthenticated && (
+        <main className={classes.counter}>
+          <h1>Redux Counter</h1>
+          {showCounter && <div className={classes.value}>{count}</div>}
+          <div>
+            {/* <input value={incrementAmount}></input> */}
+            <button onClick={incrementHandler}>Increment</button>
+            <button onClick={increaseHandler}>Increase by 5</button>
+            <button onClick={decrementHandler}>Decrement</button>
+          </div>
+          <button onClick={toggleCounterHandler}>Toggle Counter</button>
+        </main>
+      )}
+    </React.Fragment>
   );
 };
 
