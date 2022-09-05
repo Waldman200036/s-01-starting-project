@@ -18,6 +18,10 @@ export const authenticationSlice = createSlice({
     setProfileStatus(state, action) {
       state.showProfile = action.payload;
     },
+    // Flag to show or not show profile
+    toggleProfile: (state) => {
+      state.showProfile = !state.showProfile;
+    },
   },
 });
 

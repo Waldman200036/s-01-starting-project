@@ -1,15 +1,11 @@
 import classes from "./Auth.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authenticationActions } from "../redux/features/authenticate/authenticateSlice";
-import {
-  selectAuthenticated,
-  selectProfileStatus,
-} from "../redux/features/authenticate/authenticateSlice";
+
 import React from "react";
 
 const Auth = () => {
-  const isAuthenticated = useSelector(selectAuthenticated);
-  const profileStatus = useSelector(selectProfileStatus);
+
   const dispatch = useDispatch();
 
   const loginHandler = () => {
@@ -17,17 +13,8 @@ const Auth = () => {
   };
 
 
-
-  const showProfileHandler = () => {
-    dispatch(authenticationActions.setProfileStatus(true));
-  };
-
-  const hideProfileHandler = () => {
-    dispatch(authenticationActions.setProfileStatus(false));
-  };
   return (
     <React.Fragment>
-      {!isAuthenticated && (
         <main className={classes.auth}>
           <section>
             <form>
@@ -43,7 +30,6 @@ const Auth = () => {
             </form>
           </section>
         </main>
-      )}
     </React.Fragment>
   );
 };
