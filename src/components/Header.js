@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <h1>Redux Auth</h1>
-      <nav>
+      {isAuthenticated && (<nav>
         <ul>
           <li>
             <a href="/">My Products</a>
@@ -25,11 +25,11 @@ const Header = () => {
           <li>
             <a href="/">My Sales</a>
           </li>
-          {isAuthenticated && (
+          
             <li>
               <button onClick={logoutHandler}>Logout</button>
             </li>
-          )}
+         
           {isAuthenticated &&
             !isProfileShowing && (
               <li>
@@ -37,7 +37,7 @@ const Header = () => {
               </li>
             )}
         </ul>
-      </nav>
+      </nav> )}
     </header>
   );
 };
